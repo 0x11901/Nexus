@@ -664,7 +664,7 @@
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
+                    <window key="window" title="Nexus" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
@@ -685,6 +685,38 @@
                     <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4dJ-58-kSZ">
+                                <rect key="frame" x="151" y="243" width="178" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="把XML文件拖入下方兰色框中" id="cFy-zD-FpA">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="49u-pG-eaA" customClass="dragDropView" customModule="Nexus" customModuleProvider="target">
+                                <rect key="frame" x="140" y="35" width="200" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="D2G-1Z-sZX"/>
+                                    <constraint firstAttribute="height" constant="200" id="XHQ-0a-1S0"/>
+                                </constraints>
+                            </customView>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="L7s-Pq-3Gc">
+                                <rect key="frame" x="194" y="-1" width="94" height="32"/>
+                                <buttonCell key="cell" type="push" title="开始解析" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="Ovl-25-GYL">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="49u-pG-eaA" firstAttribute="top" secondItem="4dJ-58-kSZ" secondAttribute="bottom" constant="8" id="CJh-Fp-M2C"/>
+                            <constraint firstItem="49u-pG-eaA" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="ELz-q9-xVl"/>
+                            <constraint firstItem="L7s-Pq-3Gc" firstAttribute="top" secondItem="49u-pG-eaA" secondAttribute="bottom" constant="8" id="P2v-uO-pyJ"/>
+                            <constraint firstItem="4dJ-58-kSZ" firstAttribute="centerX" secondItem="49u-pG-eaA" secondAttribute="centerX" id="aAM-JO-dYC"/>
+                            <constraint firstItem="49u-pG-eaA" firstAttribute="centerY" secondItem="m2S-Jp-Qdl" secondAttribute="centerY" id="vad-JR-JZ3"/>
+                            <constraint firstItem="L7s-Pq-3Gc" firstAttribute="centerX" secondItem="49u-pG-eaA" secondAttribute="centerX" id="zGG-Td-Tay"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
