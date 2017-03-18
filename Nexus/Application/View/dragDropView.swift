@@ -25,3 +25,38 @@ extension dragDropView {
     }
     
 }
+
+extension dragDropView {
+    override func draggingEntered(_ sender: NSDraggingInfo) -> NSDragOperation {
+        let pboard = sender.draggingPasteboard()
+        self.print(pboard.types ?? "")
+        
+//        if (pboard.types?.contains(NSFilenamesPboardType))! {
+//            return NSDragOperation.copy
+//        }
+        
+        self.print("hello")
+        return NSDragOperation()
+    }
+    
+//    override func prepareForDragOperation(_ sender: NSDraggingInfo) -> Bool {
+//        let pboard = sender.draggingPasteboard()
+//        let list = pboard.propertyList(forType: NSFilenamesPboardType)
+//        self.print(list ?? "")
+//        return true
+//    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

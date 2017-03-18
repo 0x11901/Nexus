@@ -702,8 +702,8 @@
                                 </constraints>
                             </customView>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="L7s-Pq-3Gc">
-                                <rect key="frame" x="194" y="-1" width="94" height="32"/>
-                                <buttonCell key="cell" type="push" title="开始解析" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="Ovl-25-GYL">
+                                <rect key="frame" x="193" y="-1" width="94" height="32"/>
+                                <buttonCell key="cell" type="push" title="开始解析" bezelStyle="rounded" alignment="center" state="on" borderStyle="border" inset="2" id="Ovl-25-GYL">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
