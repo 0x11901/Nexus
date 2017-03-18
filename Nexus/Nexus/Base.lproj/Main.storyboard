@@ -694,7 +694,7 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="49u-pG-eaA" customClass="dragDropView" customModule="Nexus" customModuleProvider="target">
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="49u-pG-eaA" customClass="DragDropView" customModule="Nexus" customModuleProvider="target">
                                 <rect key="frame" x="140" y="35" width="200" height="200"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="D2G-1Z-sZX"/>
@@ -707,6 +707,9 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="startParser:" target="XfG-lQ-9wD" id="1Pg-ZZ-FBc"/>
+                                </connections>
                             </button>
                         </subviews>
                         <constraints>
@@ -720,6 +723,7 @@
                     </view>
                     <connections>
                         <outlet property="parserButton" destination="L7s-Pq-3Gc" id="io0-xp-Fb2"/>
+                        <outlet property="parserView" destination="49u-pG-eaA" id="u9R-JW-DNO"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

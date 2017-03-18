@@ -12,7 +12,8 @@
 		F82D9B501E7C44C900FB409B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F82D9B4F1E7C44C900FB409B /* Assets.xcassets */; };
 		F82D9B531E7C44C900FB409B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F82D9B511E7C44C900FB409B /* Main.storyboard */; };
 		F82D9B621E7C4A4C00FB409B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82D9B601E7C4A4C00FB409B /* MainViewController.swift */; };
-		F82D9B651E7C525500FB409B /* dragDropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82D9B641E7C525500FB409B /* dragDropView.swift */; };
+		F82D9B651E7C525500FB409B /* DragDropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82D9B641E7C525500FB409B /* DragDropView.swift */; };
+		F85F1C871E7D961400B13C15 /* TargetTextModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85F1C861E7D961400B13C15 /* TargetTextModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,7 +26,8 @@
 		F82D9B521E7C44C900FB409B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F82D9B541E7C44C900FB409B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F82D9B601E7C4A4C00FB409B /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
-		F82D9B641E7C525500FB409B /* dragDropView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = dragDropView.swift; sourceTree = "<group>"; };
+		F82D9B641E7C525500FB409B /* DragDropView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DragDropView.swift; sourceTree = "<group>"; };
+		F85F1C861E7D961400B13C15 /* TargetTextModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TargetTextModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +110,7 @@
 		F82D9B5C1E7C45F000FB409B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F85F1C861E7D961400B13C15 /* TargetTextModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -115,7 +118,7 @@
 		F82D9B5D1E7C45F000FB409B /* View */ = {
 			isa = PBXGroup;
 			children = (
-				F82D9B641E7C525500FB409B /* dragDropView.swift */,
+				F82D9B641E7C525500FB409B /* DragDropView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -244,7 +247,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				F82D9B4C1E7C44C900FB409B /* AppDelegate.swift in Sources */,
-				F82D9B651E7C525500FB409B /* dragDropView.swift in Sources */,
+				F85F1C871E7D961400B13C15 /* TargetTextModel.swift in Sources */,
+				F82D9B651E7C525500FB409B /* DragDropView.swift in Sources */,
 				F82D9B621E7C4A4C00FB409B /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

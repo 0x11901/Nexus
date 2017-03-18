@@ -1,5 +1,5 @@
 //
-//  dragDropView.swift
+//  DragDropView.swift
 //  Nexus
 //
 //  Created by 王靖凯 on 2017/3/18.
@@ -8,12 +8,17 @@
 
 import Cocoa
 
-class dragDropView: NSView {
+
+class DragDropView: NSView {
     
     public var getDraggingFilePath: (([String]) -> ())? = nil
     public lazy var fileNamesField: NSTextField = {
         let textField: NSTextField = NSTextField()
+        textField.textColor = NSColor.magenta
+        textField.backgroundColor = NSColor.cyan
+        textField.stringValue = "请拖入一个或多个xml文件"
         textField.placeholderString = "请拖入一个或多个xml文件"
+        textField.isBordered = false
         textField.isHidden = true
         return textField
     }()
@@ -26,13 +31,17 @@ class dragDropView: NSView {
     
 }
 
-extension dragDropView {
+extension DragDropView {
     
     fileprivate func setupUI() {
         layer?.backgroundColor = NSColor.cyan.cgColor
-        self.needsDisplay = true
         
-        
+        addSubview(fileNamesField)
+        fileNamesField.snp.makeConstraints { (make) in
+            make.center.equalTo(self)
+            make.edges.equalTo(self).inset(10)
+        }
+
     }
     
     fileprivate func registerDraggedEvent() {
@@ -41,7 +50,7 @@ extension dragDropView {
     
 }
 
-extension dragDropView {
+extension DragDropView {
     override func draggingEntered(_ sender: NSDraggingInfo) -> NSDragOperation {
         if let pboardTypes = sender.draggingPasteboard().types {
             if pboardTypes.contains(NSFilenamesPboardType) {
