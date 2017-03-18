@@ -12,6 +12,7 @@ class MainViewController: NSViewController {
 
     @IBOutlet weak var parserButton: NSButton!
     @IBOutlet weak var parserView: DragDropView!
+    fileprivate var isParsing: Bool = false
     fileprivate var xmls: [String] = []
     
     override func viewDidLoad() {
@@ -36,6 +37,19 @@ extension MainViewController {
 
 extension MainViewController {
     
+    fileprivate func parseXML() {
+        DispatchQueue.global().async {
+            if self.xmls.count > 0 {
+                for xml in self.xmls {
+                    OperationQueue().addOperation {
+                        let parser = XMLParserTool()
+                        parser.parse(filePath: xml)
+                    }
+                }
+            }
+        }
+    }
+    
     fileprivate func displayFileName(files: [String]) {
         self.xmls = []
         for file in files {
@@ -59,12 +73,14 @@ extension MainViewController {
     
 }
 
+// MARK: - parserButtonAction
 extension MainViewController {
     
     @IBAction func startParser(_ sender: NSButton) {
-        
-        NSLog("jhagfsghfkashfkjahfahf")
-        
+        if isParsing == false {
+            self.parseXML()
+           isParsing = true
+        }
     }
     
 }
