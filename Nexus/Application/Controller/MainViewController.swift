@@ -10,6 +10,8 @@ import Cocoa
 
 class MainViewController: NSViewController {
 
+    @IBOutlet weak var parserButton: NSButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
@@ -19,8 +21,12 @@ class MainViewController: NSViewController {
 }
 
 extension MainViewController {
+    
     fileprivate func setupUI() {
         
     }
+    
+    
+    
 }
 

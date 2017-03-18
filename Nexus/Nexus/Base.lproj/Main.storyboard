@@ -718,8 +718,12 @@
                             <constraint firstItem="L7s-Pq-3Gc" firstAttribute="centerX" secondItem="49u-pG-eaA" secondAttribute="centerX" id="zGG-Td-Tay"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="parserButton" destination="L7s-Pq-3Gc" id="io0-xp-Fb2"/>
+                    </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController representsSharedInstance="YES" id="wPA-6k-ZTU"/>
             </objects>
             <point key="canvasLocation" x="75" y="655"/>
         </scene>

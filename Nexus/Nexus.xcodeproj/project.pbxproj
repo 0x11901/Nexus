@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		597EF125D19B5DDF68E2EE9D /* Pods_Nexus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A034D157B4637ABB31DFADD2 /* Pods_Nexus.framework */; };
 		F82D9B4C1E7C44C900FB409B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82D9B4B1E7C44C900FB409B /* AppDelegate.swift */; };
 		F82D9B501E7C44C900FB409B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F82D9B4F1E7C44C900FB409B /* Assets.xcassets */; };
 		F82D9B531E7C44C900FB409B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F82D9B511E7C44C900FB409B /* Main.storyboard */; };
@@ -15,6 +16,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		198F190442E890DADCD5051A /* Pods-Nexus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nexus.release.xcconfig"; path = "Pods/Target Support Files/Pods-Nexus/Pods-Nexus.release.xcconfig"; sourceTree = "<group>"; };
+		24584006BB2E70D255EA91FD /* Pods-Nexus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nexus.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Nexus/Pods-Nexus.debug.xcconfig"; sourceTree = "<group>"; };
+		A034D157B4637ABB31DFADD2 /* Pods_Nexus.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Nexus.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F82D9B481E7C44C900FB409B /* Nexus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nexus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F82D9B4B1E7C44C900FB409B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F82D9B4F1E7C44C900FB409B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -29,18 +33,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				597EF125D19B5DDF68E2EE9D /* Pods_Nexus.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		85179A05E7BCC76DE905168B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A034D157B4637ABB31DFADD2 /* Pods_Nexus.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F438545C87E1617CDA32B31D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				24584006BB2E70D255EA91FD /* Pods-Nexus.debug.xcconfig */,
+				198F190442E890DADCD5051A /* Pods-Nexus.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		F82D9B3F1E7C44C900FB409B = {
 			isa = PBXGroup;
 			children = (
 				F82D9B5A1E7C45F000FB409B /* Application */,
 				F82D9B4A1E7C44C900FB409B /* Nexus */,
 				F82D9B491E7C44C900FB409B /* Products */,
+				F438545C87E1617CDA32B31D /* Pods */,
+				85179A05E7BCC76DE905168B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -103,9 +127,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F82D9B571E7C44C900FB409B /* Build configuration list for PBXNativeTarget "Nexus" */;
 			buildPhases = (
+				17843CC01AD01C6654590F81 /* [CP] Check Pods Manifest.lock */,
 				F82D9B441E7C44C900FB409B /* Sources */,
 				F82D9B451E7C44C900FB409B /* Frameworks */,
 				F82D9B461E7C44C900FB409B /* Resources */,
+				C5719988AB6FCE3DB69CE462 /* [CP] Embed Pods Frameworks */,
+				17D70F49613545B8D655D089 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -162,6 +189,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		17843CC01AD01C6654590F81 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		17D70F49613545B8D655D089 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Nexus/Pods-Nexus-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C5719988AB6FCE3DB69CE462 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Nexus/Pods-Nexus-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F82D9B441E7C44C900FB409B /* Sources */ = {
@@ -280,12 +355,14 @@
 		};
 		F82D9B581E7C44C900FB409B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 24584006BB2E70D255EA91FD /* Pods-Nexus.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 8QAM996SBN;
 				INFOPLIST_FILE = Nexus/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = wjk930726.Nexus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
@@ -294,12 +371,14 @@
 		};
 		F82D9B591E7C44C900FB409B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 198F190442E890DADCD5051A /* Pods-Nexus.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 8QAM996SBN;
 				INFOPLIST_FILE = Nexus/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = wjk930726.Nexus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
@@ -325,6 +404,7 @@
 				F82D9B591E7C44C900FB409B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
