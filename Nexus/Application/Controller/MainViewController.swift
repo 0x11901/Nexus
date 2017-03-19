@@ -79,7 +79,7 @@ extension MainViewController {
     @IBAction func startParser(_ sender: NSButton) {
         if isParsing == false {
             self.parseXML()
-           isParsing = true
+//           isParsing = true
         }
     }
     

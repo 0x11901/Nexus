@@ -9,13 +9,16 @@
 import Cocoa
 
 class TargetTextModel: NSObject {
-    var sourceText: String
-    var targetText: String
+    var sourceText: String = ""
+    var targetText: String = ""
     var flag: String?
+    var line: Int = -1
     
-    init(sourceText: String,targetText: String,flag: String? = nil) {
+    convenience init(sourceText: String,targetText: String,line: Int = -1,flag: String? = nil) {
+        self.init()
         self.sourceText = sourceText
         self.targetText = targetText
         self.flag = flag
+        self.line = line
     }
 }
