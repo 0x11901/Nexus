@@ -13,6 +13,7 @@
 		F82D9B531E7C44C900FB409B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F82D9B511E7C44C900FB409B /* Main.storyboard */; };
 		F82D9B621E7C4A4C00FB409B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82D9B601E7C4A4C00FB409B /* MainViewController.swift */; };
 		F82D9B651E7C525500FB409B /* DragDropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82D9B641E7C525500FB409B /* DragDropView.swift */; };
+		F847BD7C1E7ED687005BEF16 /* TXTEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F847BD7B1E7ED687005BEF16 /* TXTEditor.swift */; };
 		F85F1C871E7D961400B13C15 /* TargetTextModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85F1C861E7D961400B13C15 /* TargetTextModel.swift */; };
 		F85F1C8A1E7DA04F00B13C15 /* XMLParserTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85F1C891E7DA04F00B13C15 /* XMLParserTool.swift */; };
 		F8FBB2461E7DADFE0042F210 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FBB2451E7DADFE0042F210 /* Extensions.swift */; };
@@ -29,6 +30,7 @@
 		F82D9B541E7C44C900FB409B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F82D9B601E7C4A4C00FB409B /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		F82D9B641E7C525500FB409B /* DragDropView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DragDropView.swift; sourceTree = "<group>"; };
+		F847BD7B1E7ED687005BEF16 /* TXTEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TXTEditor.swift; sourceTree = "<group>"; };
 		F85F1C861E7D961400B13C15 /* TargetTextModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TargetTextModel.swift; sourceTree = "<group>"; };
 		F85F1C891E7DA04F00B13C15 /* XMLParserTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMLParserTool.swift; sourceTree = "<group>"; };
 		F8FBB2451E7DADFE0042F210 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				F85F1C891E7DA04F00B13C15 /* XMLParserTool.swift */,
+				F847BD7B1E7ED687005BEF16 /* TXTEditor.swift */,
 				F8FBB2451E7DADFE0042F210 /* Extensions.swift */,
 			);
 			path = Tools;
@@ -260,6 +263,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F847BD7C1E7ED687005BEF16 /* TXTEditor.swift in Sources */,
 				F82D9B4C1E7C44C900FB409B /* AppDelegate.swift in Sources */,
 				F8FBB2461E7DADFE0042F210 /* Extensions.swift in Sources */,
 				F85F1C871E7D961400B13C15 /* TargetTextModel.swift in Sources */,

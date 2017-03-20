@@ -29,6 +29,5 @@ extension NSAlert {
         }else if act == NSAlertThirdButtonReturn && thirdButtonReturn != nil {
             thirdButtonReturn!()
         }
-        
     }
 }

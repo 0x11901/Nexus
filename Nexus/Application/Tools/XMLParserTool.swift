@@ -29,10 +29,6 @@ class XMLParserTool: NSObject {
 
 extension XMLParserTool: XMLParserDelegate {
     
-    func parserDidStartDocument(_ parser: XMLParser) {
-        NSLog("parserDidStartDocument...");
-    }
-    
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
         if elementName == "Data" {
             currentElementName = elementName
@@ -52,8 +48,9 @@ extension XMLParserTool: XMLParserDelegate {
         if elementName == currentElementName {
             if currentSourceText.characters.count > 0 {
                 if lastSourceText == currentSourceText {
-                    line = line + 1
                     let obj = TargetTextModel(sourceText: lastSourceText, targetText: currentSourceText, line: line, flag: nil)
+                    obj.appendLine()
+                    line = line + 1
                     targetTexts.append(obj)
                 }else{
                     lastSourceText = currentSourceText
@@ -68,9 +65,7 @@ extension XMLParserTool: XMLParserDelegate {
                 NSAlert.alertModal(messageText: "警告⚠️", informativeText: "解析\(self.XMLName)时提取文本算法出错，请截图并联系开发者", firstButtonTitle: "确定", secondButtonTitle: nil, thirdButtonTitle: nil, firstButtonReturn: nil, secondButtonReturn: nil, thirdButtonReturn: nil);
             }
         }else{
-            for obj in targetTexts {
-                NSLog(obj.targetText)
-            }
+            createTXT()
         }
     }
     
@@ -83,6 +78,22 @@ extension XMLParserTool: XMLParserDelegate {
 }
 
 extension XMLParserTool {
+    
+    fileprivate func createTXT() {
+        var txt: String = ""
+        for text in targetTexts {
+            txt = txt + text.targetText + "\n"
+        }
+        guard let range: Range =  XMLName.range(of: ".xml") else {
+            DispatchQueue.main.async {
+                NSAlert.alertModal(messageText: "警告⚠️", informativeText: "发生未知错误1", firstButtonTitle: "确定", secondButtonTitle: nil, thirdButtonTitle: nil, firstButtonReturn: nil, secondButtonReturn: nil, thirdButtonReturn: nil)
+            }
+            return
+        }
+        XMLName = XMLName.substring(to: range.lowerBound)
+        let name = XMLName
+        TXTEditor.writeToOutput(txt: txt, fileName: name)
+    }
     
     fileprivate func parseXML() {
         if XML != nil {

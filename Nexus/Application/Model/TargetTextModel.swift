@@ -22,3 +22,9 @@ class TargetTextModel: NSObject {
         self.line = line
     }
 }
+
+extension TargetTextModel {
+    func appendLine() {
+        targetText = String(format: "@ROW:%04d@", line) + targetText
+    }
+}
