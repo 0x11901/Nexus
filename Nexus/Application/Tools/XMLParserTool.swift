@@ -19,6 +19,8 @@ class XMLParserTool: NSObject {
     
     fileprivate var currentElementName: String = ""
     
+    var parseIsFinished: (() -> ())?
+    
     func parse(filePath: String) {
         XMLName = (filePath as NSString).lastPathComponent
         getXML(filePath: filePath)
@@ -65,6 +67,9 @@ extension XMLParserTool: XMLParserDelegate {
                 NSAlert.alertModal(messageText: "警告⚠️", informativeText: "解析\(self.XMLName)时提取文本算法出错，请截图并联系开发者", firstButtonTitle: "确定", secondButtonTitle: nil, thirdButtonTitle: nil, firstButtonReturn: nil, secondButtonReturn: nil, thirdButtonReturn: nil);
             }
         }else{
+            if parseIsFinished != nil {
+                parseIsFinished!()
+            }
             createTXT()
         }
     }

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		597EF125D19B5DDF68E2EE9D /* Pods_Nexus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A034D157B4637ABB31DFADD2 /* Pods_Nexus.framework */; };
+		F80D89901E842A9A00559C6E /* DropDragView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80D898F1E842A9A00559C6E /* DropDragView.swift */; };
 		F82D9B4C1E7C44C900FB409B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82D9B4B1E7C44C900FB409B /* AppDelegate.swift */; };
 		F82D9B501E7C44C900FB409B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F82D9B4F1E7C44C900FB409B /* Assets.xcassets */; };
 		F82D9B531E7C44C900FB409B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F82D9B511E7C44C900FB409B /* Main.storyboard */; };
@@ -23,6 +24,7 @@
 		198F190442E890DADCD5051A /* Pods-Nexus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nexus.release.xcconfig"; path = "Pods/Target Support Files/Pods-Nexus/Pods-Nexus.release.xcconfig"; sourceTree = "<group>"; };
 		24584006BB2E70D255EA91FD /* Pods-Nexus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nexus.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Nexus/Pods-Nexus.debug.xcconfig"; sourceTree = "<group>"; };
 		A034D157B4637ABB31DFADD2 /* Pods_Nexus.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Nexus.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F80D898F1E842A9A00559C6E /* DropDragView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropDragView.swift; sourceTree = "<group>"; };
 		F82D9B481E7C44C900FB409B /* Nexus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nexus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F82D9B4B1E7C44C900FB409B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F82D9B4F1E7C44C900FB409B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 		F82D9B5D1E7C45F000FB409B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				F80D898F1E842A9A00559C6E /* DropDragView.swift */,
 				F82D9B641E7C525500FB409B /* DragDropView.swift */,
 			);
 			path = View;
@@ -266,6 +269,7 @@
 				F847BD7C1E7ED687005BEF16 /* TXTEditor.swift in Sources */,
 				F82D9B4C1E7C44C900FB409B /* AppDelegate.swift in Sources */,
 				F8FBB2461E7DADFE0042F210 /* Extensions.swift in Sources */,
+				F80D89901E842A9A00559C6E /* DropDragView.swift in Sources */,
 				F85F1C871E7D961400B13C15 /* TargetTextModel.swift in Sources */,
 				F82D9B651E7C525500FB409B /* DragDropView.swift in Sources */,
 				F82D9B621E7C4A4C00FB409B /* MainViewController.swift in Sources */,
