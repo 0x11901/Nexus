@@ -3,12 +3,15 @@
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Application-->
         <scene sceneID="JPo-4y-FX3">
             <objects>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Nexus" customModuleProvider="target"/>
+                <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <application id="hnw-xV-0zn" sceneMemberID="viewController">
                     <menu key="mainMenu" title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
                         <items>
@@ -655,14 +658,13 @@
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Nexus" customModuleProvider="target"/>
-                <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="75" y="0.0"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
             <objects>
+                <customObject id="Oky-zY-oP4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
                     <window key="window" title="Nexus" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
@@ -674,62 +676,93 @@
                         <segue destination="XfG-lQ-9wD" kind="relationship" relationship="window.shadowedContentViewController" id="cq2-FE-JQM"/>
                     </connections>
                 </windowController>
-                <customObject id="Oky-zY-oP4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="75" y="261"/>
         </scene>
         <!--Main View Controller-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
+                <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController representsSharedInstance="YES" id="wPA-6k-ZTU"/>
                 <viewController id="XfG-lQ-9wD" customClass="MainViewController" customModule="Nexus" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                        <rect key="frame" x="0.0" y="0.0" width="594" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4dJ-58-kSZ">
-                                <rect key="frame" x="151" y="243" width="178" height="17"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="把XML文件拖入下方兰色框中" id="cFy-zD-FpA">
-                                    <font key="font" metaFont="system"/>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Guy-XH-KXR">
+                                <rect key="frame" x="60" y="243" width="179" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="把XML文件拖入下方蓝色框中" id="wnj-4i-Jhn">
+                                    <font key="font" size="13" name=".PingFangSC-Regular"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="49u-pG-eaA" customClass="DragDropView" customModule="Nexus" customModuleProvider="target">
-                                <rect key="frame" x="140" y="35" width="200" height="200"/>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="WpQ-Hk-gUu" customClass="DragDropView" customModule="Nexus" customModuleProvider="target">
+                                <rect key="frame" x="49" y="35" width="200" height="200"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="D2G-1Z-sZX"/>
-                                    <constraint firstAttribute="height" constant="200" id="XHQ-0a-1S0"/>
+                                    <constraint firstAttribute="width" constant="200" id="Bby-hP-byz"/>
+                                    <constraint firstAttribute="height" constant="200" id="noj-KC-GX7"/>
                                 </constraints>
                             </customView>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="L7s-Pq-3Gc">
-                                <rect key="frame" x="193" y="-1" width="94" height="32"/>
-                                <buttonCell key="cell" type="push" title="开始解析" bezelStyle="rounded" alignment="center" state="on" borderStyle="border" inset="2" id="Ovl-25-GYL">
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kwU-tm-Qhk">
+                                <rect key="frame" x="102" y="-1" width="94" height="32"/>
+                                <buttonCell key="cell" type="push" title="开始解析" bezelStyle="rounded" alignment="center" state="on" borderStyle="border" inset="2" id="oHo-9T-xXz">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="startParser:" target="XfG-lQ-9wD" id="1Pg-ZZ-FBc"/>
+                                    <action selector="startParser:" target="XfG-lQ-9wD" id="YMo-8a-x1q"/>
+                                </connections>
+                            </button>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="eER-oe-kKL" customClass="DropDragView" customModule="Nexus" customModuleProvider="target">
+                                <rect key="frame" x="346" y="35" width="200" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="ldb-vu-NQL"/>
+                                    <constraint firstAttribute="width" constant="200" id="uNo-WM-UYW"/>
+                                </constraints>
+                            </customView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gPf-9t-8Ns">
+                                <rect key="frame" x="358" y="243" width="176" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="把TXT文件拖入下方绿色框中" id="WQI-ba-kf9">
+                                    <font key="font" size="13" name=".PingFangSC-Regular"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xHO-tL-tds">
+                                <rect key="frame" x="399" y="-1" width="94" height="32"/>
+                                <buttonCell key="cell" type="push" title="开始导出" bezelStyle="rounded" alignment="center" state="on" borderStyle="border" inset="2" id="rUG-4h-O2O">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="improtAction:" target="XfG-lQ-9wD" id="xx6-0Z-rfk"/>
                                 </connections>
                             </button>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="49u-pG-eaA" firstAttribute="top" secondItem="4dJ-58-kSZ" secondAttribute="bottom" constant="8" id="CJh-Fp-M2C"/>
-                            <constraint firstItem="49u-pG-eaA" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="ELz-q9-xVl"/>
-                            <constraint firstItem="L7s-Pq-3Gc" firstAttribute="top" secondItem="49u-pG-eaA" secondAttribute="bottom" constant="8" id="P2v-uO-pyJ"/>
-                            <constraint firstItem="4dJ-58-kSZ" firstAttribute="centerX" secondItem="49u-pG-eaA" secondAttribute="centerX" id="aAM-JO-dYC"/>
-                            <constraint firstItem="49u-pG-eaA" firstAttribute="centerY" secondItem="m2S-Jp-Qdl" secondAttribute="centerY" id="vad-JR-JZ3"/>
-                            <constraint firstItem="L7s-Pq-3Gc" firstAttribute="centerX" secondItem="49u-pG-eaA" secondAttribute="centerX" id="zGG-Td-Tay"/>
+                            <constraint firstItem="eER-oe-kKL" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" multiplier="1.5" id="7Wl-y2-RGZ"/>
+                            <constraint firstItem="WpQ-Hk-gUu" firstAttribute="centerY" secondItem="m2S-Jp-Qdl" secondAttribute="centerY" id="8iJ-i0-oSi"/>
+                            <constraint firstItem="kwU-tm-Qhk" firstAttribute="centerX" secondItem="WpQ-Hk-gUu" secondAttribute="centerX" id="FXu-T1-Q6N"/>
+                            <constraint firstItem="xHO-tL-tds" firstAttribute="centerX" secondItem="eER-oe-kKL" secondAttribute="centerX" id="ety-br-lhL"/>
+                            <constraint firstItem="eER-oe-kKL" firstAttribute="top" secondItem="gPf-9t-8Ns" secondAttribute="bottom" constant="8" id="hLg-J6-3kE"/>
+                            <constraint firstItem="eER-oe-kKL" firstAttribute="centerY" secondItem="m2S-Jp-Qdl" secondAttribute="centerY" id="jaX-kc-JZR"/>
+                            <constraint firstItem="WpQ-Hk-gUu" firstAttribute="top" secondItem="Guy-XH-KXR" secondAttribute="bottom" constant="8" id="p0c-1I-NRh"/>
+                            <constraint firstItem="xHO-tL-tds" firstAttribute="top" secondItem="eER-oe-kKL" secondAttribute="bottom" constant="8" id="qY7-P6-jR9"/>
+                            <constraint firstItem="gPf-9t-8Ns" firstAttribute="centerX" secondItem="eER-oe-kKL" secondAttribute="centerX" id="r7k-fa-xm8"/>
+                            <constraint firstItem="Guy-XH-KXR" firstAttribute="centerX" secondItem="WpQ-Hk-gUu" secondAttribute="centerX" id="rUu-vX-VE1"/>
+                            <constraint firstItem="kwU-tm-Qhk" firstAttribute="top" secondItem="WpQ-Hk-gUu" secondAttribute="bottom" constant="8" id="vCo-5g-nzw"/>
+                            <constraint firstItem="WpQ-Hk-gUu" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" multiplier="0.5" id="zLR-Jc-LWA"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="parserButton" destination="L7s-Pq-3Gc" id="io0-xp-Fb2"/>
-                        <outlet property="parserView" destination="49u-pG-eaA" id="u9R-JW-DNO"/>
+                        <outlet property="importView" destination="eER-oe-kKL" id="eit-F9-zPP"/>
+                        <outlet property="parserButton" destination="kwU-tm-Qhk" id="gDF-sV-rgE"/>
+                        <outlet property="parserView" destination="WpQ-Hk-gUu" id="WfF-d9-m3Q"/>
                     </connections>
                 </viewController>
-                <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <userDefaultsController representsSharedInstance="YES" id="wPA-6k-ZTU"/>
             </objects>
-            <point key="canvasLocation" x="75" y="655"/>
+            <point key="canvasLocation" x="32" y="645"/>
         </scene>
     </scenes>
 </document>

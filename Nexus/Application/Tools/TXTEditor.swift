@@ -12,6 +12,7 @@ class TXTEditor: NSObject {
     
     var importIsFinished: (() -> ())?
     fileprivate var txtName = ""
+    fileprivate var xmlPath = ""
     fileprivate var TXT: Data?
     fileprivate var txtArray: [String] = []
     
@@ -35,8 +36,9 @@ class TXTEditor: NSObject {
 
 extension TXTEditor {
     
-    func importTXT(filePath: String) {
+    func importTXT(filePath: String,xmlPath: String) {
         txtName = (filePath as NSString).lastPathComponent
+        self.xmlPath = xmlPath
         getTXT(filePath: filePath)
         parseTXT()
     }
@@ -57,6 +59,7 @@ extension TXTEditor {
             
             if var txt: String = String(data: TXT!, encoding: .utf8) {
                 txt = txt.replacingOccurrences(of: "\n", with: "")
+                txt = txt.replacingOccurrences(of: "\r", with: "")
                 var i = 0;
                 while true {
                     let start = txt.range(of: String(format: "@ROW:%04d@", i))
@@ -76,6 +79,7 @@ extension TXTEditor {
                         break
                     }
                 }
+                NSLog(xmlPath, txtArray.last ?? "")
             }
         }
     }

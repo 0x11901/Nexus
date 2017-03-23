@@ -50,16 +50,25 @@ extension MainViewController {
         DispatchQueue.global().async {
             if self.txts.count > 0,self.xmls.count > 0 {
                 for txt in self.txts {
-                    
-                    OperationQueue().addOperation {
-                        let editor = TXTEditor()
-                        editor.importIsFinished = {
-                            self.mark += 1
-                            if self.mark == self.txts.count {
-                                self.isImporting = false
+                    let name = (txt as NSString).lastPathComponent
+                    let range: Range =  name.range(of: ".txt")!
+                    let tf = name.substring(to: range.lowerBound)
+                    for xml in self.xmls {
+                        let name = (xml as NSString).lastPathComponent
+                        let range: Range =  name.range(of: ".xml")!
+                        let xf = name.substring(to: range.lowerBound)
+                        if tf == xf {
+                            OperationQueue().addOperation {
+                                let editor = TXTEditor()
+                                editor.importIsFinished = {
+                                    self.mark += 1
+                                    if self.mark == self.txts.count {
+                                        self.isImporting = false
+                                    }
+                                }
+                                editor.importTXT(filePath: txt,xmlPath: xml)
                             }
                         }
-                        editor.importTXT(filePath: txt)
                     }
                 }
             }else{
