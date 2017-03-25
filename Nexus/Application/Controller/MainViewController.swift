@@ -70,6 +70,11 @@ extension MainViewController {
                             }
                         }
                     }
+//                    if self.mark == 0 {
+//                        DispatchQueue.main.async {
+//                            NSAlert.alertModal(messageText: "xml和txt应该有一样的名字", informativeText: "不匹配", firstButtonTitle: "ok", secondButtonTitle: nil, thirdButtonTitle: nil, firstButtonReturn: nil, secondButtonReturn: nil, thirdButtonReturn: nil)
+//                        }
+//                    }
                 }
             }else{
                 NSAlert.alertModal(messageText: "need xml and txt!", informativeText: "both are indispensable", firstButtonTitle: "ok", secondButtonTitle: nil, thirdButtonTitle: nil, firstButtonReturn: nil, secondButtonReturn: nil, thirdButtonReturn: nil)

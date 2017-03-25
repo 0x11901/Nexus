@@ -11,10 +11,10 @@ import Cocoa
 class TargetTextModel: NSObject {
     var sourceText: String = ""
     var targetText: String = ""
-    var flag: String?
+    var flag: Int = -1
     var line: Int = -1
     
-    convenience init(sourceText: String,targetText: String,line: Int = -1,flag: String? = nil) {
+    convenience init(sourceText: String,targetText: String,line: Int = -1,flag: Int = -1) {
         self.init()
         self.sourceText = sourceText
         self.targetText = targetText

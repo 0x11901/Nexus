@@ -16,6 +16,7 @@ class TXTEditor: NSObject {
     fileprivate var TXT: Data?
     fileprivate var txtArray: [String] = []
     
+    
     class func writeToOutput(txt: String,fileName: String) {
         guard let path = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first! + "/Output/" + fileName + ".txt").addingPercentEncoding(withAllowedCharacters: CharacterSet.urlPathAllowed) else {
             DispatchQueue.main.async {
@@ -32,6 +33,24 @@ class TXTEditor: NSObject {
             }
         }
     }
+    
+    class func writeToOutput(xml: String,fileName: String) {
+        guard let path = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first! + "/Output/" + fileName).addingPercentEncoding(withAllowedCharacters: CharacterSet.urlPathAllowed) else {
+            DispatchQueue.main.async {
+                NSAlert.alertModal(messageText: "警告⚠️", informativeText: "请截图并联系开发者\n未知错误3", firstButtonTitle: "确定", secondButtonTitle: nil, thirdButtonTitle: nil, firstButtonReturn: nil, secondButtonReturn: nil, thirdButtonReturn: nil)
+            }
+            return
+        }
+        let url = URL(fileURLWithPath: path)
+        do {
+            try xml.write(to: url, atomically: true, encoding: .utf8)
+        }catch{
+            DispatchQueue.main.async {
+                NSAlert.alertModal(messageText: "警告⚠️", informativeText: "写\(fileName).xml入/Users/你/Documents/Output/发生错误\n请截图并联系开发者\n\(error)", firstButtonTitle: "确定", secondButtonTitle: nil, thirdButtonTitle: nil, firstButtonReturn: nil, secondButtonReturn: nil, thirdButtonReturn: nil)
+            }
+        }
+    }
+
 }
 
 extension TXTEditor {
@@ -56,7 +75,6 @@ extension TXTEditor {
     
     fileprivate func parseTXT() {
         if TXT != nil {
-            
             if var txt: String = String(data: TXT!, encoding: .utf8) {
                 txt = txt.replacingOccurrences(of: "\n", with: "")
                 txt = txt.replacingOccurrences(of: "\r", with: "")
@@ -79,12 +97,14 @@ extension TXTEditor {
                         break
                     }
                 }
-                NSLog(xmlPath, txtArray.last ?? "")
+                if txtArray.count > 0 {
+                    let tool: XMLParserTool = XMLParserTool()
+                    tool.replace(filePath: xmlPath, txtArray: txtArray)
+                }
             }
         }
     }
 }
-
 
 
 

@@ -20,6 +20,9 @@ class XMLParserTool: NSObject {
     fileprivate var currentElementName: String = ""
     
     var parseIsFinished: (() -> ())?
+    fileprivate var mark = 0
+    fileprivate var txtArray: [String] = []
+    fileprivate var filePath: String = ""
     
     func parse(filePath: String) {
         XMLName = (filePath as NSString).lastPathComponent
@@ -27,6 +30,12 @@ class XMLParserTool: NSObject {
         parseXML()
     }
     
+    func replace(filePath: String,txtArray: [String]) {
+        self.txtArray = txtArray
+        self.filePath = filePath
+        getXML(filePath: filePath)
+        parseXML()
+    }
 }
 
 extension XMLParserTool: XMLParserDelegate {
@@ -50,7 +59,7 @@ extension XMLParserTool: XMLParserDelegate {
         if elementName == currentElementName {
             if currentSourceText.characters.count > 0 {
                 if lastSourceText == currentSourceText {
-                    let obj = TargetTextModel(sourceText: lastSourceText, targetText: currentSourceText, line: line, flag: nil)
+                    let obj = TargetTextModel(sourceText: lastSourceText, targetText: currentSourceText, line: line, flag: parser.lineNumber)
                     obj.appendLine()
                     line = line + 1
                     targetTexts.append(obj)
@@ -70,7 +79,11 @@ extension XMLParserTool: XMLParserDelegate {
             if parseIsFinished != nil {
                 parseIsFinished!()
             }
-            createTXT()
+            if txtArray.count < 1 {
+                createTXT()
+            }else{
+                replaceXML()
+            }
         }
     }
     
@@ -115,6 +128,39 @@ extension XMLParserTool {
         }catch{
             DispatchQueue.main.async {
                 NSAlert.alertModal(messageText: "警告⚠️", informativeText: "读取\((filePath as NSString).lastPathComponent)错误，请截图并联系开发者", firstButtonTitle: "确定", secondButtonTitle: nil, thirdButtonTitle: nil, firstButtonReturn: nil, secondButtonReturn: nil, thirdButtonReturn: nil)
+            }
+        }
+    }
+    
+    fileprivate func replaceXML() {
+        let url = URL(fileURLWithPath: filePath)
+        do {
+            var xmlDocumet = try String(contentsOf: url)
+            var xmls: [String] = []
+            while true {
+                if let range = xmlDocumet.range(of: "\r\n") {
+                    xmls.append(xmlDocumet.substring(to: range.lowerBound))
+                    xmlDocumet = xmlDocumet.substring(from: range.upperBound)
+                }else{
+                    break
+                }
+            }
+            
+            NSLog(xmls.last!)
+            
+            for target in targetTexts.enumerated() {
+                let i = target.offset
+                let el = target.element
+                xmls[el.flag - 1] = "    <Cell><Data ss:Type=\"String\">\(txtArray[i])</Data></Cell>"
+            }
+            var targetString: String = ""
+            for xmltext in xmls {
+                targetString = targetString.appending(xmltext.appending("\r\n"))
+            }
+            TXTEditor.writeToOutput(xml: targetString, fileName: (filePath as NSString).lastPathComponent)
+        }catch{
+            DispatchQueue.main.async {
+                NSAlert.alertModal(messageText: "xml地址错误", informativeText: "导入读取xml地址出错", firstButtonTitle: "ok", secondButtonTitle: nil, thirdButtonTitle: nil, firstButtonReturn: nil, secondButtonReturn: nil, thirdButtonReturn: nil)
             }
         }
     }
