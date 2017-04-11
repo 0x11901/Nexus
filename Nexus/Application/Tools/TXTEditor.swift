@@ -75,14 +75,14 @@ extension TXTEditor {
     
     fileprivate func parseTXT() {
         if TXT != nil {
-            if var txt: String = String(data: TXT!, encoding: .utf8) {
-                txt = txt.replacingOccurrences(of: "\n", with: "")
-                txt = txt.replacingOccurrences(of: "\r", with: "")
+            if let txt: String = String(data: TXT!, encoding: .utf8) {
+//                txt = txt.replacingOccurrences(of: "\t\t\r\n", with: "")
+//                txt = txt.replacingOccurrences(of: "\r\n", with: "")
                 var i = 0;
                 while true {
-                    let start = txt.range(of: String(format: "@ROW:%04d@", i))
+                    let start = txt.range(of: String(format: "@ROW%04d@", i))
                     i += 1
-                    let end = txt.range(of: String(format: "@ROW:%04d@", i))
+                    let end = txt.range(of: String(format: "@ROW%04d@", i))
                     if let sb = start?.upperBound,let eb = end?.lowerBound {
                         let el = txt.substring(with: sb ..< eb)
                         txtArray.append(el)
