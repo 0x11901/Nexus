@@ -100,7 +100,7 @@ extension XMLParserTool {
     fileprivate func createTXT() {
         var txt: String = ""
         for text in targetTexts {
-            txt = txt + text.targetText + "\n"
+            txt = txt + text.targetText + "\r\n"
         }
         guard let range: Range =  XMLName.range(of: ".xml") else {
             DispatchQueue.main.async {
