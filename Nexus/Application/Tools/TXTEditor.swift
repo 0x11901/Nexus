@@ -76,8 +76,6 @@ extension TXTEditor {
     fileprivate func parseTXT() {
         if TXT != nil {
             if var txt: String = String(data: TXT!, encoding: .utf8) {
-//                txt = txt.replacingOccurrences(of: "\t\t\r\n", with: "")
-//                txt = txt.replacingOccurrences(of: "\r\n", with: "")
                 txt = txt.trimmingCharacters(in: .whitespacesAndNewlines);
                 var i = 0;
                 while true {
@@ -92,6 +90,10 @@ extension TXTEditor {
                         if el.hasSuffix("\n") {
                             el = (el as NSString).substring(to: el.characters.count - 1);
                         }
+                        el = el.replacingOccurrences(of: "\n", with: "&#10;")
+                        el = el.replacingOccurrences(of: "\r\n", with: "&#10;")
+                        el = el.replacingOccurrences(of: "<", with: "&lt;")
+                        el = el.replacingOccurrences(of: ">", with: "&gt;")
                         txtArray.append(el)
                     }else if start?.upperBound != nil {
                         let el = txt.substring(from: start!.upperBound)
