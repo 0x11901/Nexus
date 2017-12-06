@@ -151,7 +151,7 @@ extension XMLParserTool {
             for target in targetTexts.enumerated() {
                 let i = target.offset
                 let el = target.element
-                xmls[el.flag - 1] = "    <Cell><Data ss:Type=\"String\">\(txtArray[i])</Data></Cell>"
+                xmls[el.flag - 1] = String(format: "    <Cell><Data ss:Type=\"String\">%@</Data></Cell>", arguments: [txtArray[i]])
             }
             var targetString: String = ""
             for xmltext in xmls {
