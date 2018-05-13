@@ -8,10 +8,8 @@
 
 import Cocoa
 
-
 class DragDropView: NSView {
-    
-    public var getDraggingFilePath: (([String]) -> ())? = nil
+    public var getDraggingFilePath: (([String]) -> Void)?
     public lazy var fileNamesField: NSTextField = {
         let textField: NSTextField = NSTextField()
         textField.textColor = NSColor.colorWithHex(hex: 0xFFFFFF)
@@ -23,30 +21,26 @@ class DragDropView: NSView {
         textField.isEditable = false
         return textField
     }()
-    
-    
+
     override func awakeFromNib() {
-        self.setupUI()
-        self.registerDraggedEvent()
+        setupUI()
+        registerDraggedEvent()
     }
-    
 }
 
 extension DragDropView {
-    
     fileprivate func setupUI() {
         layer?.backgroundColor = NSColor.colorWithHex(hex: 0x367FE6).cgColor
         addSubview(fileNamesField)
-        fileNamesField.snp.makeConstraints { (make) in
+        fileNamesField.snp.makeConstraints { make in
             make.center.equalTo(self)
             make.edges.equalTo(self).inset(10)
         }
     }
-    
+
     fileprivate func registerDraggedEvent() {
         register(forDraggedTypes: [NSFilenamesPboardType])
     }
-    
 }
 
 extension DragDropView {
@@ -61,24 +55,10 @@ extension DragDropView {
 
     override func prepareForDragOperation(_ sender: NSDraggingInfo) -> Bool {
         if getDraggingFilePath != nil {
-            if let list = sender.draggingPasteboard().propertyList(forType: NSFilenamesPboardType) as? [String],getDraggingFilePath != nil {
+            if let list = sender.draggingPasteboard().propertyList(forType: NSFilenamesPboardType) as? [String], getDraggingFilePath != nil {
                 getDraggingFilePath!(list)
             }
         }
         return true
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

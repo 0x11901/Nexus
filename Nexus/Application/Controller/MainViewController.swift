@@ -9,53 +9,48 @@
 import Cocoa
 
 class MainViewController: NSViewController {
-
-    @IBOutlet weak var parserButton: NSButton!
-    @IBOutlet weak var parserView: DragDropView!
-    @IBOutlet weak var importView: DropDragView!
+    @IBOutlet var parserButton: NSButton!
+    @IBOutlet var parserView: DragDropView!
+    @IBOutlet var importView: DropDragView!
     fileprivate var isParsing: Bool = false
     fileprivate var isImporting: Bool = false
     fileprivate var xmls: [String] = []
     fileprivate var txts: [String] = []
     fileprivate var flag: Int = 0
     fileprivate var mark: Int = 0
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
-        self.setup()
+        setup()
     }
-
 }
 
 extension MainViewController {
-    
     fileprivate func setup() {
         parserView.getDraggingFilePath = {
-            ( files: [String] ) in
-            self.displayFileName(files: files,isParser: true)
+            (files: [String]) in
+            self.displayFileName(files: files, isParser: true)
         }
         importView.getDraggingFilePath = {
-            ( files: [String] ) in
-            self.displayFileName(files: files,isParser: false)
+            (files: [String]) in
+            self.displayFileName(files: files, isParser: false)
         }
     }
-    
 }
 
 extension MainViewController {
-    
     fileprivate func importTXT() {
         mark = 0
         DispatchQueue.global().async {
-            if self.txts.count > 0,self.xmls.count > 0 {
+            if self.txts.count > 0, self.xmls.count > 0 {
                 for txt in self.txts {
                     let name = (txt as NSString).lastPathComponent
-                    let range: Range =  name.range(of: ".txt")!
+                    let range: Range = name.range(of: ".txt")!
                     let tf = name.substring(to: range.lowerBound)
                     for xml in self.xmls {
                         let name = (xml as NSString).lastPathComponent
-                        let range: Range =  name.range(of: ".xml")!
+                        let range: Range = name.range(of: ".xml")!
                         let xf = name.substring(to: range.lowerBound)
                         if tf == xf {
                             OperationQueue().addOperation {
@@ -66,7 +61,7 @@ extension MainViewController {
                                         self.isImporting = false
                                     }
                                 }
-                                editor.importTXT(filePath: txt,xmlPath: xml)
+                                editor.importTXT(filePath: txt, xmlPath: xml)
                             }
                         }
                     }
@@ -76,13 +71,12 @@ extension MainViewController {
 //                        }
 //                    }
                 }
-            }else{
+            } else {
                 NSAlert.alertModal(messageText: "need xml and txt!", informativeText: "both are indispensable", firstButtonTitle: "ok", secondButtonTitle: nil, thirdButtonTitle: nil, firstButtonReturn: nil, secondButtonReturn: nil, thirdButtonReturn: nil)
             }
         }
-
     }
-    
+
     fileprivate func parseXML() {
         flag = 0
         DispatchQueue.global().async {
@@ -105,46 +99,46 @@ extension MainViewController {
             }
         }
     }
-    
-    fileprivate func displayFileName(files: [String],isParser: Bool) {
+
+    fileprivate func displayFileName(files: [String], isParser: Bool) {
         if isParser {
-            self.xmls = []
+            xmls = []
             for file in files {
                 if file.hasSuffix(".xml") {
-                    self.xmls.append(file)
+                    xmls.append(file)
                 }
-                if self.xmls.count > 0 {
+                if xmls.count > 0 {
                     var names: String = ""
-                    for name in self.xmls {
+                    for name in xmls {
                         let nsString: NSString = name as NSString
                         names.append(nsString.lastPathComponent)
                         names.append("\n")
                     }
-                    self.parserView.fileNamesField.stringValue = names
-                    self.parserView.fileNamesField.isHidden = false
-                }else{
-                    self.importView.fileNamesField.isHidden = false
-                    self.parserView.fileNamesField.stringValue = "仅支持xml文档"
+                    parserView.fileNamesField.stringValue = names
+                    parserView.fileNamesField.isHidden = false
+                } else {
+                    importView.fileNamesField.isHidden = false
+                    parserView.fileNamesField.stringValue = "仅支持xml文档"
                 }
             }
-        }else{
-            self.txts = []
+        } else {
+            txts = []
             for file in files {
                 if file.hasSuffix(".txt") {
-                    self.txts.append(file)
+                    txts.append(file)
                 }
-                if self.txts.count > 0 {
+                if txts.count > 0 {
                     var names: String = ""
-                    for name in self.txts {
+                    for name in txts {
                         let nsString: NSString = name as NSString
                         names.append(nsString.lastPathComponent)
                         names.append("\n")
                     }
-                    self.importView.fileNamesField.stringValue = names
-                    self.importView.fileNamesField.isHidden = false
-                }else{
-                    self.importView.fileNamesField.isHidden = false
-                    self.importView.fileNamesField.stringValue = "仅支持txt文档"
+                    importView.fileNamesField.stringValue = names
+                    importView.fileNamesField.isHidden = false
+                } else {
+                    importView.fileNamesField.isHidden = false
+                    importView.fileNamesField.stringValue = "仅支持txt文档"
                 }
             }
         }
@@ -152,21 +146,19 @@ extension MainViewController {
 }
 
 // MARK: - parserButtonAction
+
 extension MainViewController {
-    
-    @IBAction func startParser(_ sender: NSButton) {
+    @IBAction func startParser(_: NSButton) {
         if isParsing == false {
-            self.parseXML()
-           isParsing = true
+            parseXML()
+            isParsing = true
         }
     }
-    
-    @IBAction func improtAction(_ sender: NSButton) {
+
+    @IBAction func improtAction(_: NSButton) {
 //        if isImporting == false {
-            self.importTXT()
+        importTXT()
 //            isImporting = true
 //        }
     }
-    
 }
-

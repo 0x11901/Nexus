@@ -11,26 +11,26 @@ import Cocoa
 class XMLParserTool: NSObject {
     fileprivate var XML: Data?
     fileprivate var XMLName: String = ""
-    
+
     fileprivate var targetTexts: [TargetTextModel] = []
     fileprivate var lastSourceText: String = ""
     fileprivate var currentSourceText: String = ""
     fileprivate var line: Int = 0
-    
+
     fileprivate var currentElementName: String = ""
-    
-    var parseIsFinished: (() -> ())?
+
+    var parseIsFinished: (() -> Void)?
     fileprivate var mark = 0
     fileprivate var txtArray: [String] = []
     fileprivate var filePath: String = ""
-    
+
     func parse(filePath: String) {
         XMLName = (filePath as NSString).lastPathComponent
         getXML(filePath: filePath)
         parseXML()
     }
-    
-    func replace(filePath: String,txtArray: [String]) {
+
+    func replace(filePath: String, txtArray: [String]) {
         self.txtArray = txtArray
         self.filePath = filePath
         getXML(filePath: filePath)
@@ -39,23 +39,22 @@ class XMLParserTool: NSObject {
 }
 
 extension XMLParserTool: XMLParserDelegate {
-    
-    func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
+    func parser(_: XMLParser, didStartElement elementName: String, namespaceURI _: String?, qualifiedName _: String?, attributes _: [String: String] = [:]) {
         if elementName == "Data" {
             currentElementName = elementName
             currentSourceText = ""
-        }else{
+        } else {
             currentElementName = ""
         }
     }
-    
-    func parser(_ parser: XMLParser, foundCharacters string: String) {
+
+    func parser(_: XMLParser, foundCharacters string: String) {
         if currentElementName.characters.count > 0 {
             currentSourceText = currentSourceText + string
         }
     }
-    
-    func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
+
+    func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI _: String?, qualifiedName _: String?) {
         if elementName == currentElementName {
             if currentSourceText.characters.count > 0 {
                 if lastSourceText == currentSourceText {
@@ -63,46 +62,44 @@ extension XMLParserTool: XMLParserDelegate {
                     obj.appendLine()
                     line = line + 1
                     targetTexts.append(obj)
-                }else{
+                } else {
                     lastSourceText = currentSourceText
                 }
             }
         }
     }
-    
-    func parserDidEndDocument(_ parser: XMLParser) {
+
+    func parserDidEndDocument(_: XMLParser) {
         if targetTexts.count == 0 {
             DispatchQueue.main.async {
-                NSAlert.alertModal(messageText: "警告⚠️", informativeText: "解析\(self.XMLName)时提取文本算法出错，请截图并联系开发者", firstButtonTitle: "确定", secondButtonTitle: nil, thirdButtonTitle: nil, firstButtonReturn: nil, secondButtonReturn: nil, thirdButtonReturn: nil);
+                NSAlert.alertModal(messageText: "警告⚠️", informativeText: "解析\(self.XMLName)时提取文本算法出错，请截图并联系开发者", firstButtonTitle: "确定", secondButtonTitle: nil, thirdButtonTitle: nil, firstButtonReturn: nil, secondButtonReturn: nil, thirdButtonReturn: nil)
             }
-        }else{
+        } else {
             if parseIsFinished != nil {
                 parseIsFinished!()
             }
             if txtArray.count < 1 {
                 createTXT()
-            }else{
+            } else {
                 replaceXML()
             }
         }
     }
-    
-    func parser(_ parser: XMLParser, parseErrorOccurred parseError: Error) {
+
+    func parser(_: XMLParser, parseErrorOccurred parseError: Error) {
         DispatchQueue.main.async {
             NSAlert.alertModal(messageText: "警告⚠️", informativeText: "解析\(self.XMLName)发生错误：\(parseError)\n请截图并联系开发者", firstButtonTitle: "确定", secondButtonTitle: nil, thirdButtonTitle: nil, firstButtonReturn: nil, secondButtonReturn: nil, thirdButtonReturn: nil)
         }
     }
-    
 }
 
 extension XMLParserTool {
-    
     fileprivate func createTXT() {
         var txt: String = ""
         for text in targetTexts {
             txt = txt + text.targetText + "\r\n"
         }
-        guard let range: Range =  XMLName.range(of: ".xml") else {
+        guard let range: Range = XMLName.range(of: ".xml") else {
             DispatchQueue.main.async {
                 NSAlert.alertModal(messageText: "警告⚠️", informativeText: "发生未知错误1", firstButtonTitle: "确定", secondButtonTitle: nil, thirdButtonTitle: nil, firstButtonReturn: nil, secondButtonReturn: nil, thirdButtonReturn: nil)
             }
@@ -112,7 +109,7 @@ extension XMLParserTool {
         let name = XMLName
         TXTEditor.writeToOutput(txt: txt, fileName: name)
     }
-    
+
     fileprivate func parseXML() {
         if XML != nil {
             let parser = XMLParser(data: XML!)
@@ -120,18 +117,18 @@ extension XMLParserTool {
             parser.parse()
         }
     }
-    
+
     fileprivate func getXML(filePath: String) {
         let fileURL = URL(fileURLWithPath: filePath)
         do {
             try XML = Data(contentsOf: fileURL)
-        }catch{
+        } catch {
             DispatchQueue.main.async {
                 NSAlert.alertModal(messageText: "警告⚠️", informativeText: "读取\((filePath as NSString).lastPathComponent)错误，请截图并联系开发者", firstButtonTitle: "确定", secondButtonTitle: nil, thirdButtonTitle: nil, firstButtonReturn: nil, secondButtonReturn: nil, thirdButtonReturn: nil)
             }
         }
     }
-    
+
     fileprivate func replaceXML() {
         let url = URL(fileURLWithPath: filePath)
         do {
@@ -141,13 +138,13 @@ extension XMLParserTool {
                 if let range = xmlDocumet.range(of: "\r\n") {
                     xmls.append(xmlDocumet.substring(to: range.lowerBound))
                     xmlDocumet = xmlDocumet.substring(from: range.upperBound)
-                }else{
+                } else {
                     break
                 }
             }
-            
+
             NSLog(xmls.last!)
-            
+
             for target in targetTexts.enumerated() {
                 let i = target.offset
                 let el = target.element
@@ -158,11 +155,10 @@ extension XMLParserTool {
                 targetString = targetString.appending(xmltext.appending("\r\n"))
             }
             TXTEditor.writeToOutput(xml: targetString, fileName: (filePath as NSString).lastPathComponent)
-        }catch{
+        } catch {
             DispatchQueue.main.async {
                 NSAlert.alertModal(messageText: "xml地址错误", informativeText: "导入读取xml地址出错", firstButtonTitle: "ok", secondButtonTitle: nil, thirdButtonTitle: nil, firstButtonReturn: nil, secondButtonReturn: nil, thirdButtonReturn: nil)
             }
         }
     }
-    
 }

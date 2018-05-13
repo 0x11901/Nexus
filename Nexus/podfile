@@ -6,6 +6,6 @@ target 'Nexus' do
   use_frameworks!
 
   # Pods for Nexus
-pod 'SnapKit', '~> 3.2.0'
+pod 'SnapKit'
 
 end

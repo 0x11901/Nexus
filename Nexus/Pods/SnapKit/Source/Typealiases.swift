@@ -21,46 +21,16 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
+import Foundation
+
 #if os(iOS) || os(tvOS)
     import UIKit
+    typealias LayoutRelation = NSLayoutRelation
+    typealias LayoutAttribute = NSLayoutAttribute
+    typealias LayoutPriority = UILayoutPriority
 #else
     import AppKit
+    typealias LayoutRelation = NSLayoutConstraint.Relation
+    typealias LayoutAttribute = NSLayoutConstraint.Attribute
+    typealias LayoutPriority = NSLayoutConstraint.Priority
 #endif
-
-public class ConstraintMakerPriortizable: ConstraintMakerFinalizable {
-    @discardableResult
-    public func priority(_ amount: ConstraintPriority) -> ConstraintMakerFinalizable {
-        description.priority = amount.value
-        return self
-    }
-
-    @discardableResult
-    public func priority(_ amount: ConstraintPriorityTarget) -> ConstraintMakerFinalizable {
-        description.priority = amount
-        return self
-    }
-
-    @available(*, deprecated: 3.0, message: "Use priority(.required) instead.")
-    @discardableResult
-    public func priorityRequired() -> ConstraintMakerFinalizable {
-        return priority(.required)
-    }
-
-    @available(*, deprecated: 3.0, message: "Use priority(.high) instead.")
-    @discardableResult
-    public func priorityHigh() -> ConstraintMakerFinalizable {
-        return priority(.high)
-    }
-
-    @available(*, deprecated: 3.0, message: "Use priority(.medium) instead.")
-    @discardableResult
-    public func priorityMedium() -> ConstraintMakerFinalizable {
-        return priority(.medium)
-    }
-
-    @available(*, deprecated: 3.0, message: "Use priority(.low) instead.")
-    @discardableResult
-    public func priorityLow() -> ConstraintMakerFinalizable {
-        return priority(.low)
-    }
-}
