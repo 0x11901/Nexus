@@ -27,27 +27,30 @@
     import AppKit
 #endif
 
+
 public class ConstraintMakerEditable: ConstraintMakerPriortizable {
+
     @discardableResult
     public func multipliedBy(_ amount: ConstraintMultiplierTarget) -> ConstraintMakerEditable {
-        description.multiplier = amount
+        self.description.multiplier = amount
         return self
     }
-
+    
     @discardableResult
     public func dividedBy(_ amount: ConstraintMultiplierTarget) -> ConstraintMakerEditable {
-        return multipliedBy(1.0 / amount.constraintMultiplierTargetValue)
+        return self.multipliedBy(1.0 / amount.constraintMultiplierTargetValue)
     }
-
+    
     @discardableResult
     public func offset(_ amount: ConstraintOffsetTarget) -> ConstraintMakerEditable {
-        description.constant = amount.constraintOffsetTargetValue
+        self.description.constant = amount.constraintOffsetTargetValue
         return self
     }
-
+    
     @discardableResult
     public func inset(_ amount: ConstraintInsetTarget) -> ConstraintMakerEditable {
-        description.constant = amount.constraintInsetTargetValue
+        self.description.constant = amount.constraintInsetTargetValue
         return self
     }
+    
 }

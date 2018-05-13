@@ -27,20 +27,23 @@
     import AppKit
 #endif
 
-public class ConstraintMakerFinalizable {
-    internal let description: ConstraintDescription
 
+public class ConstraintMakerFinalizable {
+    
+    internal let description: ConstraintDescription
+    
     internal init(_ description: ConstraintDescription) {
         self.description = description
     }
-
+    
     @discardableResult
     public func labeled(_ label: String) -> ConstraintMakerFinalizable {
-        description.label = label
+        self.description.label = label
         return self
     }
-
+    
     public var constraint: Constraint {
-        return description.constraint!
+        return self.description.constraint!
     }
+    
 }

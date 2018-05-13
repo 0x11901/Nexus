@@ -27,8 +27,9 @@
     import AppKit
 #endif
 
+
 #if os(iOS) || os(tvOS)
     public typealias ConstraintInsets = UIEdgeInsets
 #else
-    public typealias ConstraintInsets = NSEdgeInsets
+    public typealias ConstraintInsets = EdgeInsets
 #endif
