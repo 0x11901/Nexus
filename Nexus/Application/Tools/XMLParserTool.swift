@@ -49,14 +49,14 @@ extension XMLParserTool: XMLParserDelegate {
     }
 
     func parser(_: XMLParser, foundCharacters string: String) {
-        if currentElementName.characters.count > 0 {
+        if currentElementName.count > 0 {
             currentSourceText = currentSourceText + string
         }
     }
 
     func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI _: String?, qualifiedName _: String?) {
         if elementName == currentElementName {
-            if currentSourceText.characters.count > 0 {
+            if currentSourceText.count > 0 {
                 if lastSourceText == currentSourceText {
                     let obj = TargetTextModel(sourceText: lastSourceText, targetText: currentSourceText, line: line, flag: parser.lineNumber)
                     obj.appendLine()
