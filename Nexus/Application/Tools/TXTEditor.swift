@@ -82,11 +82,9 @@ extension TXTEditor {
                         var el = txt.substring(with: sb ..< eb)
                         if el.hasSuffix("\r\n") {
                             el = (el as NSString).substring(to: el.count )
-                            print("\r\n")
                         }
                         if el.hasSuffix("\n") {
                             el = (el as NSString).substring(to: el.count )
-                            print("\n")
                         }
                         el = el.replacingOccurrences(of: "\n", with: "&#10;")
                         el = el.replacingOccurrences(of: "\r\n", with: "&#10;")
